@@ -14,7 +14,7 @@
 					<th>Price</th>
 					<th>Stock</th>
 					<th>Status</th>
-					<th colspan="2" width="20%"></th>
+					<th width="15%"></th>
 				</tr>
 			</thead>
 
@@ -26,8 +26,7 @@
 						<td><%= product.price %></td>
 						<td><%= product.stock %></td>
 						<td><%= product.status %></td>
-						<td><%= link_to 'Edit', edit_product_path(product) %></td>
-						<td><%= link_to 'Destroy', product, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+						<td class="text-center"><%= link_to 'Edit', edit_product_path(product), :class => 'badge badge-info' %> <%= link_to 'Destroy', product, method: :delete, data: { confirm: 'Are you sure?' }, :class => 'badge badge-danger' %></td>
 					</tr>
 				<% end %>
 			</tbody>

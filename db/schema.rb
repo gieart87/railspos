@@ -10,7 +10,29 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_06_25_144839) do
+ActiveRecord::Schema.define(version: 2019_06_26_160949) do
+
+  create_table "items", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.integer "qty"
+    t.decimal "price", precision: 10, scale: 2
+    t.bigint "product_id"
+    t.bigint "order_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["order_id"], name: "index_items_on_order_id"
+    t.index ["product_id"], name: "index_items_on_product_id"
+  end
+
+  create_table "orders", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "order_code"
+    t.datetime "order_date"
+    t.integer "status"
+    t.decimal "total", precision: 10, scale: 2
+    t.decimal "discount", precision: 10, scale: 2
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["order_code"], name: "index_orders_on_order_code", unique: true
+  end
 
   create_table "products", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "sku"
@@ -19,8 +41,14 @@ ActiveRecord::Schema.define(version: 2019_06_25_144839) do
     t.decimal "price", precision: 10, scale: 2
     t.text "description"
     t.integer "status"
+    t.integer "stock"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["name"], name: "index_products_on_name", unique: true
+    t.index ["sku"], name: "index_products_on_sku", unique: true
+    t.index ["slug"], name: "index_products_on_slug", unique: true
   end
 
+  add_foreign_key "items", "orders"
+  add_foreign_key "items", "products"
 end

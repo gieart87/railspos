@@ -12,6 +12,7 @@
 					<th>Sku</th>
 					<th width="30%">Name</th>
 					<th>Price</th>
+					<th>Stock</th>
 					<th>Status</th>
 					<th colspan="2" width="20%"></th>
 				</tr>
@@ -23,6 +24,7 @@
 						<td><%= product.sku %></td>
 						<td><%= product.name %></td>
 						<td><%= product.price %></td>
+						<td><%= product.stock %></td>
 						<td><%= product.status %></td>
 						<td><%= link_to 'Edit', edit_product_path(product) %></td>
 						<td><%= link_to 'Destroy', product, method: :delete, data: { confirm: 'Are you sure?' } %></td>

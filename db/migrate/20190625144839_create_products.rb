@@ -7,12 +7,13 @@ class CreateProducts < ActiveRecord::Migration[5.2]
 			t.decimal :price, precision: 10, scale: 2
 			t.text :description
 			t.integer :status
+			t.integer :stock
 
 			t.timestamps
-
-			add_index :products, :sku, unique: true
-			add_index :products, :name, unique: true
-			add_index :products, :slug, unique: true
 		end
+
+		add_index :products, :sku, unique: true
+		add_index :products, :name, unique: true
+		add_index :products, :slug, unique: true
   	end
 end

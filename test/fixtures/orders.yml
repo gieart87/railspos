@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  order_code: MyString
+  order_date: 2019-06-26 23:07:36
+  status: 1
+  total: 9.99
+  discount: 9.99
+
+two:
+  order_code: MyString
+  order_date: 2019-06-26 23:07:36
+  status: 1
+  total: 9.99
+  discount: 9.99

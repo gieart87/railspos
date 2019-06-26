@@ -1,47 +1,66 @@
-<%= form_with(model: product, local: true) do |form| %>
-  <% if product.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(product.errors.count, "error") %> prohibited this product from being saved:</h2>
+<div class="card card-default">
+	<div class="card-header card-header-border-bottom">
+		<h2>Product</h2>
+	</div>
+	<div class="card-body">
+		<%= form_with(model: product, local: true, :class => 'horizontal-form') do |form| %>
+			<% if product.errors.any? %>
+				<div id="error_explanation" class="alert alert-danger">
+					<h3><%= pluralize(product.errors.count, "error") %> prohibited this product from being saved:</h3>
 
-      <ul>
-      <% product.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
+					<ul>
+					<% product.errors.full_messages.each do |message| %>
+						<li><%= message %></li>
+					<% end %>
+					</ul>
+				</div>
+			<% end %>
 
-  <div class="field">
-    <%= form.label :sku %>
-    <%= form.text_field :sku %>
-  </div>
-
-  <div class="field">
-    <%= form.label :name %>
-    <%= form.text_field :name %>
-  </div>
-
-  <div class="field">
-    <%= form.label :slug %>
-    <%= form.text_field :slug %>
-  </div>
-
-  <div class="field">
-    <%= form.label :price %>
-    <%= form.text_field :price %>
-  </div>
-
-  <div class="field">
-    <%= form.label :description %>
-    <%= form.text_area :description %>
-  </div>
-
-  <div class="field">
-    <%= form.label :status %>
-    <%= form.number_field :status %>
-  </div>
-
-  <div class="actions">
-    <%= form.submit %>
-  </div>
-<% end %>
+			<div class="form-group row">
+				<div class="col-12 col-md-3 text-right">
+					<%= form.label :sku, 'SKU'%>
+				</div>
+				<div class="col-12 col-md-9">
+					<%= form.text_field :sku, :class => 'form-control' %>
+				</div>
+			</div>
+			<div class="form-group row">
+				<div class="col-12 col-md-3 text-right">
+					<%= form.label :name %>
+				</div>
+				<div class="col-12 col-md-9">
+					<%= form.text_field :name, :class => 'form-control' %>
+				</div>
+			</div>
+			<div class="form-group row">
+				<div class="col-12 col-md-3 text-right">
+					<%= form.label :price %>
+				</div>
+				<div class="col-12 col-md-9">
+					<%= form.text_field :price, :class => 'form-control' %>
+				</div>
+			</div>
+			<div class="form-group row">
+				<div class="col-12 col-md-3 text-right">
+					<%= form.label :description %>
+				</div>
+				<div class="col-12 col-md-9">
+					<%= form.text_area :description, :class => 'form-control' %>
+				</div>
+			</div>
+			<div class="form-group row">
+				<div class="col-12 col-md-3 text-right">
+					<%= form.label :status %>
+				</div>
+				<div class="col-12 col-md-9">
+					<!-- <%= form.number_field :status %> -->
+					<%= form.select :status, @status, {:include_blank => '-- Status --'}, { :class => 'form-control' } %>
+				</div>
+			</div>
+			<div class="form-footer pt-5 border-top">
+				<%= form.submit :class => 'btn btn-primary btn-default'%>
+				<%= link_to 'Back to products', products_path %>
+			</div>
+		<% end %>
+	</div>
+</div>

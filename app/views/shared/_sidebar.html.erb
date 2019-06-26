@@ -33,10 +33,7 @@
 
             <!-- sidebar menu -->
             <ul class="nav sidebar-inner" id="sidebar-menu">
-
-
-
-                <li  class="has-sub active expand" >
+                <!-- <li  class="has-sub active expand" >
                     <a class="sidenav-item-link" href="javascript:void(0)" data-toggle="collapse" data-target="#dashboard"
                        aria-expanded="false" aria-controls="dashboard">
                         <i class="mdi mdi-view-dashboard-outline"></i>
@@ -45,21 +42,11 @@
                     <ul  class="collapse show"  id="dashboard"
                          data-parent="#sidebar-menu">
                         <div class="sub-menu">
-
-
-
                             <li  class="active" >
                                 <a class="sidenav-item-link" href="index.html">
                                     <span class="nav-text">Ecommerce</span>
-
                                 </a>
                             </li>
-
-
-
-
-
-
                             <li >
                                 <a class="sidenav-item-link" href="analytics.html">
                                     <span class="nav-text">Analytics</span>
@@ -68,47 +55,24 @@
 
                                 </a>
                             </li>
-
-
-
-
                         </div>
                     </ul>
-                </li>
-
-
-
-
-
+                </li> -->
                 <li  class="has-sub" >
                     <a class="sidenav-item-link" href="javascript:void(0)" data-toggle="collapse" data-target="#ui-elements"
                        aria-expanded="false" aria-controls="ui-elements">
                         <i class="mdi mdi-folder-multiple-outline"></i>
-                        <span class="nav-text">UI Elements</span> <b class="caret"></b>
+                        <span class="nav-text">Products</span> <b class="caret"></b>
                     </a>
                     <ul  class="collapse"  id="ui-elements"
                          data-parent="#sidebar-menu">
                         <div class="sub-menu">
-
-
-                            <li  class="has-sub" >
-                                <a class="sidenav-item-link" href="javascript:void(0)" data-toggle="collapse" data-target="#components"
-                                   aria-expanded="false" aria-controls="components">
-                                    <span class="nav-text">Components</span> <b class="caret"></b>
-                                </a>
-                                <ul  class="collapse"  id="components">
-                                    <div class="sub-menu">
-
-                                        <li >
-                                            <a href="alert.html">Alert</a>
-                                        </li>
-
-                                        <li >
-                                            <a href="badge.html">Badge</a>
-                                        </li>   
-                                    </div>
-                                </ul>
+                            <li >
+                                <%= link_to 'New Product', new_product_path %>
                             </li>
+                            <li >
+                                <%= link_to 'Products', products_path %>
+                            </li>  
                         </div>
                     </ul>
                 </li>

@@ -1,38 +1,35 @@
-<div class="container">
-	<p id="notice"><%= notice %></p>
-
-	<h1>Products</h1>
-
-	<table class="table table-bordered table-stripped">
-		<thead>
-			<tr>
-				<th>Sku</th>
-				<th>Name</th>
-				<th>Slug</th>
-				<th>Price</th>
-				<th>Description</th>
-				<th>Status</th>
-				<th colspan="2"></th>
-			</tr>
-		</thead>
-
-		<tbody>
-			<% @products.each do |product| %>
+<div class="card card-default">
+	<div class="card-header card-header-border-bottom">
+		<h2>List of Products</h2>
+	</div>
+	<div class="card-body">
+		<% if notice %>
+			<p id="notice" class="alert alert-success"><%= notice %></p>
+		<% end %>
+		<table class="table table-bordered table-stripped">
+			<thead>
 				<tr>
-					<td><%= product.sku %></td>
-					<td><%= product.name %></td>
-					<td><%= product.slug %></td>
-					<td><%= product.price %></td>
-					<td><%= product.description %></td>
-					<td><%= product.status %></td>
-					<td><%= link_to 'Edit', edit_product_path(product) %></td>
-					<td><%= link_to 'Destroy', product, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+					<th>Sku</th>
+					<th width="30%">Name</th>
+					<th>Price</th>
+					<th>Status</th>
+					<th colspan="2" width="20%"></th>
 				</tr>
-			<% end %>
-		</tbody>
-	</table>
+			</thead>
 
-	<br>
-
-	<%= link_to 'New Product', new_product_path %>
+			<tbody>
+				<% @products.each do |product| %>
+					<tr>
+						<td><%= product.sku %></td>
+						<td><%= product.name %></td>
+						<td><%= product.price %></td>
+						<td><%= product.status %></td>
+						<td><%= link_to 'Edit', edit_product_path(product) %></td>
+						<td><%= link_to 'Destroy', product, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+					</tr>
+				<% end %>
+			</tbody>
+		</table>
+		<%= link_to 'New Product', new_product_path %>
+	</div>
 </div>

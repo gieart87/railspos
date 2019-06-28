@@ -1,21 +1,20 @@
+<% if product.errors.any? %>
+	<div id="error_explanation" class="alert alert-danger">
+		<h3><%= pluralize(product.errors.count, "error") %> prohibited this product from being saved:</h3>
+
+		<ul>
+		<% product.errors.full_messages.each do |message| %>
+			<li><%= message %></li>
+		<% end %>
+		</ul>
+	</div>
+<% end %>
 <div class="card card-default">
 	<div class="card-header card-header-border-bottom">
 		<h2>Product</h2>
 	</div>
 	<div class="card-body">
 		<%= form_with(model: product, local: true, :class => 'horizontal-form') do |form| %>
-			<% if product.errors.any? %>
-				<div id="error_explanation" class="alert alert-danger">
-					<h3><%= pluralize(product.errors.count, "error") %> prohibited this product from being saved:</h3>
-
-					<ul>
-					<% product.errors.full_messages.each do |message| %>
-						<li><%= message %></li>
-					<% end %>
-					</ul>
-				</div>
-			<% end %>
-
 			<div class="form-group row">
 				<div class="col-12 col-md-3 text-right">
 					<%= form.label :sku, 'SKU'%>

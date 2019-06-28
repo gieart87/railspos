@@ -3,6 +3,14 @@
 	<div class="row">
 		<%= render "devise/shared/error_messages", resource: resource %>
 		<div class="form-group col-md-12 mb-4">
+			<%= f.label :first_name %><br />
+			<%= f.text_field :first_name,  class: 'form-control input-lg', placeholder: 'First name' %>
+		</div>
+		<div class="form-group col-md-12 mb-4">
+			<%= f.label :last_name %><br />
+			<%= f.text_field :last_name,  class: 'form-control input-lg', placeholder: 'Last name' %>
+		</div>
+		<div class="form-group col-md-12 mb-4">
 			<%= f.label :email %><br />
 			<%= f.email_field :email, autofocus: true, autocomplete: 'email', class: 'form-control input-lg', placeholder: 'Email' %>
 		</div>

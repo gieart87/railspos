@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Authentication</title>
+		<%= csrf_meta_tags %>
+		<%= csp_meta_tag %>
+
+		<%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+		<%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+
+		<%= stylesheet_link_tag "https://fonts.googleapis.com/css?family=Montserrat:400,500|Poppins:400,500,600,700|Roboto:400,500" %>
+		<%= stylesheet_link_tag "https://cdn.materialdesignicons.com/3.0.39/css/materialdesignicons.min.css" %>
+		<%= stylesheet_link_tag "sleek/sleek.css" %>
+	</head>
+
+	<body class="" id="body">
+		<div class="container d-flex flex-column justify-content-between vh-100">
+			<div class="row justify-content-center mt-5">
+				<div class="col-xl-5 col-lg-6 col-md-10">
+					<div class="card">
+						<div class="card-header bg-primary">
+							<div class="app-brand">
+								<a href="/">
+									<span class="brand-name">Authentication</span>
+								</a>
+							</div>
+						</div>
+						<div class="card-body p-5">
+							<%= yield %>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="copyright pl-0">
+				<p class="text-center">&copy; 2018 Copyright Sleek Dashboard Bootstrap Template by
+					<a class="text-primary" href="http://www.iamabdus.com/" target="_blank">Abdus</a>.
+				</p>
+			</div>
+		</div>
+	</body>
+</html>

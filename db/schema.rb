@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_06_28_093840) do
+ActiveRecord::Schema.define(version: 2019_06_28_150204) do
 
   create_table "items", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.integer "qty"
@@ -31,7 +31,9 @@ ActiveRecord::Schema.define(version: 2019_06_28_093840) do
     t.decimal "discount", precision: 10, scale: 2
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "user_id"
     t.index ["order_code"], name: "index_orders_on_order_code", unique: true
+    t.index ["user_id"], name: "index_orders_on_user_id"
   end
 
   create_table "products", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -41,8 +43,12 @@ ActiveRecord::Schema.define(version: 2019_06_28_093840) do
     t.decimal "price", precision: 10, scale: 2
     t.text "description"
     t.integer "status"
+    t.integer "stock"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["name"], name: "index_products_on_name", unique: true
+    t.index ["sku"], name: "index_products_on_sku", unique: true
+    t.index ["slug"], name: "index_products_on_slug", unique: true
   end
 
   create_table "roles", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|

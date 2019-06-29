@@ -4,9 +4,6 @@ class Order < ApplicationRecord
 
 	accepts_nested_attributes_for :items, allow_destroy: true
 
-	before_save :total_all
-	before_update :total_all
-
 	def subtotals  
 	   self.items.map { |i| i.subtotal }  
 	end  

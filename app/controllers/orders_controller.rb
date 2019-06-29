@@ -58,10 +58,15 @@ class OrdersController < ApplicationController
 	# DELETE /orders/1
 	# DELETE /orders/1.json
 	def destroy
-		@order.destroy
 		respond_to do |format|
-			format.html { redirect_to orders_url, notice: 'Order was successfully destroyed.' }
-			format.json { head :no_content }
+			if @order.can_destory then
+				@order.destroy
+		
+				format.html { redirect_to orders_url, notice: 'Order was successfully destroyed.' }
+				format.json { head :no_content }
+			else
+				format.html { redirect_to orders_url, notice: 'Order could not be destroyed.' }
+			end
 		end
 	end
 

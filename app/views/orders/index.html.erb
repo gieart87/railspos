@@ -1,35 +1,36 @@
-<p id="notice"><%= notice %></p>
+<div class="card card-default">
+	<div class="card-header card-header-border-bottom">
+		<h2>List of Orders</h2>
+	</div>
+	<div class="card-body">
+		<table class="table table-bordered table-striped">
+			<thead>
+				<tr>
+					<th>Order code</th>
+					<th>Order date</th>
+					<th>Status</th>
+					<th>Total</th>
+					<th>Discount</th>
+					<th colspan="3"></th>
+				</tr>
+			</thead>
 
-<h1>Orders</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th>Order code</th>
-      <th>Order date</th>
-      <th>Status</th>
-      <th>Total</th>
-      <th>Discount</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @orders.each do |order| %>
-      <tr>
-        <td><%= order.order_code %></td>
-        <td><%= order.order_date %></td>
-        <td><%= order.status %></td>
-        <td><%= order.total %></td>
-        <td><%= order.discount %></td>
-        <td><%= link_to 'Show', order %></td>
-        <td><%= link_to 'Edit', edit_order_path(order) %></td>
-        <td><%= link_to 'Destroy', order, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'New Order', new_order_path %>
+			<tbody>
+				<% @orders.each do |order| %>
+					<tr>
+						<td><%= order.order_code %></td>
+						<td><%= order.order_date %></td>
+						<td><%= order.status %></td>
+						<td><%= order.total %></td>
+						<td><%= order.discount %></td>
+						<td><%= link_to 'Show', order %></td>
+						<td><%= link_to 'Edit', edit_order_path(order) %></td>
+						<td><%= link_to 'Destroy', order, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+					</tr>
+				<% end %>
+			</tbody>
+		</table
+		<br>
+		<%= link_to 'New Order', new_order_path %>
+	</div>
+</div>

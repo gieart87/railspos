@@ -1,42 +1,43 @@
-<%= form_with(model: order, local: true) do |form| %>
-  <% if order.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(order.errors.count, "error") %> prohibited this order from being saved:</h2>
-
-      <ul>
-      <% order.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-  <div class="field">
-    <%= form.label :order_code %>
-    <%= form.text_field :order_code %>
-  </div>
-
-  <div class="field">
-    <%= form.label :order_date %>
-    <%= form.datetime_select :order_date %>
-  </div>
-
-  <div class="field">
-    <%= form.label :status %>
-    <%= form.number_field :status %>
-  </div>
-
-  <div class="field">
-    <%= form.label :total %>
-    <%= form.text_field :total %>
-  </div>
-
-  <div class="field">
-    <%= form.label :discount %>
-    <%= form.text_field :discount %>
-  </div>
-
-  <div class="actions">
-    <%= form.submit %>
-  </div>
+<%= form_for(@order) do |f| %>  
+	<% if @order.errors.any? %>  
+		<div id="error_explanation">  
+			<h2><%= pluralize(@order.errors.count, "error") %> prohibited this order from being saved:</h2>  
+			<ul>  
+			<% @order.errors.full_messages.each do |message| %>  
+			 <li><%= message %></li>  
+			<% end %>  
+			</ul>  
+		</div>
+	<% end %>  
+	<div class="form-group row">
+		<div class="col-12 col-md-2">
+			<%= f.label :order_code %><br>
+		</div>
+		<div class="col-12 col-md-4">
+			<%= f.text_field :order_code, class: 'form-control input-lg' %>
+		</div>
+	</div>
+	<%= f.fields_for :items do |builder| %>   
+		<%= render 'item_fields', f: builder %>   
+	<% end %>   
+	<%= link_to_add_fields "Add Item", f, :items %>   
+	<div class="form-footer pt-5 border-top">
+		<%= f.submit class: 'btn btn-primary btn-default' %>  
+	</div>  
 <% end %>
+<script type="text/javascript">   
+	jQuery(function() {   
+		$('form').on('click', '.remove_fields', function(event) {   
+		 	$(this).prev('input[type=hidden]').val('1');   
+			$(this).closest('fieldset').hide();   
+			return event.preventDefault();   
+		});   
+	 	return $('form').on('click', '.add_fields', function(event) {   
+			var regexp, time;   
+			time = new Date().getTime();   
+			regexp = new RegExp($(this).data('id'), 'g');   
+			$(this).before($(this).data('fields').replace(regexp, time));   
+			return event.preventDefault();   
+	 	});   
+	});   
+</script>

@@ -1,5 +1,9 @@
-<h1>New Order</h1>
-
-<%= render 'form', order: @order %>
-
-<%= link_to 'Back', orders_path %>
+<div class="card card-default">
+	<div class="card-header card-header-border-bottom">
+		<h2>New Order</h2>
+	</div>
+	<div class="card-body">
+	<%= render 'form', order: @order %>
+	<%= link_to 'Back', orders_path %>
+	</div>
+</div>

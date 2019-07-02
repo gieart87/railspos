@@ -1,8 +1,10 @@
-<fieldset>  
-  	<%= f.label :product, "Product" %>  
-  	<%= f.collection_select :product_id, Product.all, :id, :name, class: 'form-control input-lg'%>  
-  	<%= f.label :qty, "Quantity" %>  
-  	<%= f.text_field :qty %>  
-  	<%= f.hidden_field :_destroy %>  
-  	<%= link_to "remove", '#', class: "remove_fields" %>  
- </fieldset>
+<tr>  
+  	<td><%= f.label :product, "Product" %></td>
+  	<td><%= f.collection_select :product_id, Product.all, :id, :name, class: 'form-control input-lg'%></td>
+  	<td><%= f.label :qty, "Quantity" %></td>  
+  	<td><%= f.text_field :qty %></td>
+  	<td>
+  		<%= f.hidden_field :_destroy %>
+  		<%= link_to "remove", '#', class: "remove_fields" %>		
+  	</td>
+ </tr>

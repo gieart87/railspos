@@ -16,11 +16,27 @@
 		<div class="col-12 col-md-4">
 			<%= f.text_field :order_code, class: 'form-control input-lg' %>
 		</div>
+		<div class="col-12 col-md-2">
+			<%= f.label :order_date %><br>
+		</div>
+		<div class="col-12 col-md-4">
+			<%= f.text_field :order_date, value: Time.now,class: 'form-control input-lg', readonly: true %>
+		</div>
 	</div>
-	<%= f.fields_for :items do |builder| %>   
-		<%= render 'item_fields', f: builder %>   
-	<% end %>   
-	<%= link_to_add_fields "Add Item", f, :items %>   
+	<div class="form-group row">
+		<div class="col-md-12">
+			<table class="table table-bordered">
+			<%= f.fields_for :items do |builder| %>   
+				<%= render 'item_fields', f: builder %>   
+			<% end %>
+			<tr>
+				<td colspan="99">
+					<%= link_to_add_fields "Add Item", f, :items %>
+				</td>
+			</tr>
+			</table>
+		</div>
+	</div>
 	<div class="form-footer pt-5 border-top">
 		<%= f.submit class: 'btn btn-primary btn-default' %>  
 	</div>  

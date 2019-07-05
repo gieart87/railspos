@@ -10,7 +10,7 @@ gem 'font-awesome-rails'
 
 gem 'devise'   
 gem 'cancancan' 
-gem 'nested_form'
+gem 'simple_form'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.2.3'

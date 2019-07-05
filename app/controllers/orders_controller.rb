@@ -15,6 +15,7 @@ class OrdersController < ApplicationController
 	# GET /orders/new
 	def new
 		@order = Order.new
+		1.times { @order.items.build }
 	end
 
 	# GET /orders/1/edit

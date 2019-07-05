@@ -1,4 +1,4 @@
-<%= form_for(@order) do |f| %>  
+<%= simple_form_for(@order) do |f| %>  
 	<% if @order.errors.any? %>  
 		<div id="error_explanation">  
 			<h2><%= pluralize(@order.errors.count, "error") %> prohibited this order from being saved:</h2>  
@@ -26,34 +26,23 @@
 	<div class="form-group row">
 		<div class="col-md-12">
 			<table class="table table-bordered">
-			<%= f.fields_for :items do |builder| %>   
-				<%= render 'item_fields', f: builder %>   
-			<% end %>
-			<tr>
-				<td colspan="99">
-					<%= link_to_add_fields "Add Item", f, :items %>
-				</td>
-			</tr>
+				<thead>
+					<th>Product</th>
+					<th width="15%">Price</th>
+					<th width="10%">QTY</th>
+					<th width="15%">Sub Total</th>
+					<th width="10%"></th>
+				</thead>
+				<tbody class="fields">
+					<%= f.simple_fields_for :items do |builder| %>   
+						<%= render 'item', f: builder %>   
+					<% end %>
+				</tbody>
 			</table>
+			<%= link_to_add_row('Add Task', f, :items, class: '') %>
 		</div>
 	</div>
 	<div class="form-footer pt-5 border-top">
 		<%= f.submit class: 'btn btn-primary btn-default' %>  
 	</div>  
 <% end %>
-<script type="text/javascript">   
-	jQuery(function() {   
-		$('form').on('click', '.remove_fields', function(event) {   
-		 	$(this).prev('input[type=hidden]').val('1');   
-			$(this).closest('fieldset').hide();   
-			return event.preventDefault();   
-		});   
-	 	return $('form').on('click', '.add_fields', function(event) {   
-			var regexp, time;   
-			time = new Date().getTime();   
-			regexp = new RegExp($(this).data('id'), 'g');   
-			$(this).before($(this).data('fields').replace(regexp, time));   
-			return event.preventDefault();   
-	 	});   
-	});   
-</script>

@@ -27,7 +27,6 @@ class OrdersController < ApplicationController
 	def create
 		@order = Order.new(order_params)
 		@order.user_id = current_user.id
-		@order.total = @order.total_all
 		@order.order_date = Time.now
 		@order.status = 1
 

@@ -62,11 +62,13 @@ class OrdersController < ApplicationController
 			if @order.can_destory then
 				@order.destroy
 		
-				format.html { redirect_to orders_url, notice: 'Order was successfully destroyed.' }
-				format.json { head :no_content }
+				flash[:notice] = 'Order was successfully destroyed.'
 			else
-				format.html { redirect_to orders_url, notice: 'Order could not be destroyed.' }
+				flash[:error] = 'Order could not be destroyed.'
 			end
+
+			format.html {redirect_to orders_url }
+			format.json { head :no_content }
 		end
 	end
 

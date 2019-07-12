@@ -18,7 +18,7 @@
 			<div class="col-md-4">
 				<div class="form-group">
 					<%= f.label :order_code %>
-					<%= f.text_field :order_code, class: 'form-control input-lg' %>
+					<%= f.text_field :order_code, class: 'form-control input-lg', readonly: true, placeholder: 'auto generate' %>
 				</div>
 			</div>
 		</div>
@@ -26,7 +26,7 @@
 			<div class="col-md-4">
 				<div class="form-group">
 					<%= f.label :order_date %>
-					<%= f.text_field :order_date, value: Time.now,class: 'form-control input-lg', readonly: true %>
+					<%= f.text_field :order_date, value: Time.now.strftime('%Y-%m-%d'),class: 'form-control input-lg', readonly: true %>
 				</div>
 			</div>
 		</div>

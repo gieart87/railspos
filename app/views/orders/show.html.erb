@@ -1,29 +1,77 @@
 <p id="notice"><%= notice %></p>
-
-<p>
-  <strong>Order code:</strong>
-  <%= @order.order_code %>
-</p>
-
-<p>
-  <strong>Order date:</strong>
-  <%= @order.order_date %>
-</p>
-
-<p>
-  <strong>Status:</strong>
-  <%= @order.status %>
-</p>
-
-<p>
-  <strong>Total:</strong>
-  <%= @order.total %>
-</p>
-
-<p>
-  <strong>Discount:</strong>
-  <%= @order.discount %>
-</p>
-
+<div class="invoice-wrapper rounded border bg-white py-5 px-3 px-md-4 px-lg-5">
+	<div class="d-flex justify-content-between">
+		<h2 class="text-dark font-weight-medium">Invoice #<%= @order.order_code %></h2>
+		<div class="btn-group">
+			<button class="btn btn-sm btn-secondary">
+				<i class="mdi mdi-content-save"></i> Save</button>
+			<button class="btn btn-sm btn-secondary">
+				<i class="mdi mdi-printer"></i> Print</button>
+		</div>
+	</div>
+	<div class="row pt-5">
+		<div class="col-xl-3 col-lg-4">
+			<p class="text-dark mb-2">From</p>
+			<address>
+				Company Name
+				<br> 47 Holmes Green, Sophiebury, WP9M 3ZZ
+				<br> Email: example@gmail.com
+			</address>
+		</div>
+		<div class="col-xl-3 col-lg-4">
+			<p class="text-dark mb-2">Details</p>
+			<address>
+				Invoice ID:
+				<span class="text-dark">#<%= @order.order_code %></span>
+				<br> <%= time_format @order.order_date %>
+			</address>
+		</div>
+	</div>
+	<table class="table mt-3 table-striped table-responsive table-responsive-large" style="width:100%">
+		<thead>
+			<tr>
+				<th>#</th>
+				<th>Item</th>
+				<th>Description</th>
+				<th>Quantity</th>
+				<th>Unit Cost</th>
+				<th>Total</th>
+			</tr>
+		</thead>
+		<tbody>
+			<% i = 1 %>
+			<% @order.items.each do | item | %>
+				<tr>
+					<td><%= i %></td>
+					<td><%= item.product.name %></td>
+					<td><%= item.product.description %></td>
+					<td><%= item.qty %></td>
+					<td><%= currency_format item.price %></td>
+					<td><%= currency_format item.price.to_f * item.qty.to_f %></td>
+				</tr>
+				<% i = i + 1 %>
+			<% end %>
+		</tbody>
+	</table>
+	<div class="row justify-content-end">
+		<div class="col-lg-5 col-xl-4 col-xl-3 ml-sm-auto">
+			<ul class="list-unstyled mt-4">
+				<li class="mid pb-3 text-dark"> Subtotal
+					<span class="d-inline-block float-right text-default"><%= currency_format @order.total %></span>
+				</li>
+				<li class="mid pb-3 text-dark"> Discount
+					<span class="d-inline-block float-right text-default"><%= currency_format @order.discount %></span>
+				</li>
+				<li class="mid pb-3 text-dark">Tax(10%)
+					<span class="d-inline-block float-right text-default"><%= currency_format @order.total_tax %></span>
+				</li>
+				<li class="pb-3 text-dark">Total
+					<span class="d-inline-block float-right"><%= currency_format @order.grand_total %></span>
+				</li>
+			</ul>
+			<a href="#" class="btn btn-block mt-2 btn-lg btn-primary btn-pill"> Procced to Payment</a>
+		</div>
+	</div>
+</div>
 <%= link_to 'Edit', edit_order_path(@order) %> |
 <%= link_to 'Back', orders_path %>

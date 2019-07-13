@@ -19,7 +19,7 @@
 				<% @orders.each do |order| %>
 					<tr>
 						<td><%= order.order_code %></td>
-						<td><%= order.order_date %></td>
+						<td><%= time_format order.order_date %></td>
 						<td><%= order.status %></td>
 						<td><%= order.total %></td>
 						<td><%= order.discount %></td>

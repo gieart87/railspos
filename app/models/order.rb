@@ -31,6 +31,18 @@ class Order < ApplicationRecord
 		return items.empty?
 	end
 
+	def total_nett
+		self.total.to_f - self.discount.to_f
+	end
+
+	def total_tax
+		0.10 * total_nett
+	end
+
+	def grand_total
+		total_nett + total_tax
+	end
+
 	private
 		# def generate_code
 		# 	chars = (0..9).to_a

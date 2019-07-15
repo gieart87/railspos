@@ -1,5 +1,6 @@
 class OrdersController < ApplicationController
 	before_action :set_order, only: [:show, :edit, :update, :destroy]
+	before_action :lock_order, only: [:edit, :update, :destroy]
 
 	# GET /orders
 	# GET /orders.json
@@ -81,5 +82,16 @@ class OrdersController < ApplicationController
 		# Never trust parameters from the scary internet, only allow the white list through.
 		def order_params
 			params.require(:order).permit(:order_code, :order_date, :status, :total, :discount, items_attributes: [:id,:product_id, :price,:qty,:total,:_destroy])
+		end
+
+		def lock_order
+			if @order.status != 1
+				respond_to do |format|
+					flash[:error] = 'Order could not be updated.'
+
+					format.html {redirect_to @order}
+					format.json { head :no_content }
+				end
+			end
 		end
 end

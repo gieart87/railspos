@@ -1,4 +1,3 @@
-<p id="notice"><%= notice %></p>
 <div class="invoice-wrapper rounded border bg-white py-5 px-3 px-md-4 px-lg-5">
 	<div class="d-flex justify-content-between">
 		<h2 class="text-dark font-weight-medium">Invoice #<%= @order.order_code %></h2>
@@ -72,6 +71,7 @@
 			<a href="#" class="btn btn-block mt-2 btn-lg btn-primary btn-pill"> Procced to Payment</a>
 		</div>
 	</div>
+	<div class="row">
+		<%= link_to 'Edit', edit_order_path(@order) %> | <%= link_to 'Back', orders_path %>
+	</div>
 </div>
-<%= link_to 'Edit', edit_order_path(@order) %> |
-<%= link_to 'Back', orders_path %>

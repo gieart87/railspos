@@ -23,9 +23,21 @@
 						<td><%= order.status %></td>
 						<td><%= order.total %></td>
 						<td><%= order.discount %></td>
-						<td><%= link_to 'Show', order %></td>
-						<td><%= link_to 'Edit', edit_order_path(order) %></td>
-						<td><%= link_to 'Destroy', order, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+						<td>
+							<% if can? :read, order %>
+								<%= link_to 'Show', order %>
+							<% end %>
+						</td>
+						<td>
+							<% if can? :update, order %>
+								<%= link_to 'Edit', edit_order_path(order) %>
+							<% end %>
+						</td>
+						<td>
+							<% if can? :destroy, order %>
+								<%= link_to 'Destroy', order, method: :delete, data: { confirm: 'Are you sure?' } %>
+							<% end %>
+						</td>
 					</tr>
 				<% end %>
 			</tbody>

@@ -11,6 +11,8 @@ class User < ApplicationRecord
 	def name
 		if !self.first_name.nil? and !self.last_name.nil?
 			self.first_name + ' ' + self.last_name
+		elsif !self.first_name.nil? and self.last_name.nil?
+			self.first_name
 		else 
 			self.email
 		end

@@ -1,57 +1,42 @@
 <%= simple_form_for(@order) do |f| %>
-<% if @order.errors.any? %>
-	<div id="error_explanation" class="alert alert-danger">
-		<h3><%= pluralize(@order.errors.count, "error") %> prohibited this order from being saved:</h3>
-		<ul>
-			<% @order.errors.full_messages.each do |message| %>
-	 			<li><%= message %></li>
-			<% end %>
-		</ul>
+<div class="card-body">
+	<div class="row">
+		<div class="col-md-4">
+			<div class="form-group">
+				<%= f.label :order_code %>
+				<%= f.text_field :order_code, class: 'form-control input-lg', readonly: true, placeholder: 'auto generate' %>
+			</div>
+		</div>
 	</div>
-<% end %>
-<div class="card card-default">
-	<div class="card-header card-header-border-bottom">
-		<h2>New Order</h2>
+	<div class="row">
+		<div class="col-md-4">
+			<div class="form-group">
+				<%= f.label :order_date %>
+				<%= f.text_field :order_date, value: Time.now.strftime('%Y-%m-%d'),class: 'form-control input-lg', readonly: true %>
+			</div>
+		</div>
 	</div>
-	<div class="card-body">
-		<div class="row">
-			<div class="col-md-4">
-				<div class="form-group">
-					<%= f.label :order_code %>
-					<%= f.text_field :order_code, class: 'form-control input-lg', readonly: true, placeholder: 'auto generate' %>
-				</div>
-			</div>
+	<div class="row">
+		<div class="col-md-12">
+			<table class="table table-bordered">
+				<thead>
+					<th>Product</th>
+					<th width="15%">Price</th>
+					<th width="10%">QTY</th>
+					<th width="15%">Sub Total</th>
+					<th width="10%"></th>
+				</thead>
+				<tbody class="fields">
+					<%= f.simple_fields_for :items do |builder| %>   
+						<%= render 'item', f: builder %>   
+					<% end %>
+				</tbody>
+			</table>
+			<%= link_to_add_row('Add Item', f, :items, class: '') %>
 		</div>
-		<div class="row">
-			<div class="col-md-4">
-				<div class="form-group">
-					<%= f.label :order_date %>
-					<%= f.text_field :order_date, value: Time.now.strftime('%Y-%m-%d'),class: 'form-control input-lg', readonly: true %>
-				</div>
-			</div>
-		</div>
-		<div class="row">
-			<div class="col-md-12">
-				<table class="table table-bordered">
-					<thead>
-						<th>Product</th>
-						<th width="15%">Price</th>
-						<th width="10%">QTY</th>
-						<th width="15%">Sub Total</th>
-						<th width="10%"></th>
-					</thead>
-					<tbody class="fields">
-						<%= f.simple_fields_for :items do |builder| %>   
-							<%= render 'item', f: builder %>   
-						<% end %>
-					</tbody>
-				</table>
-				<%= link_to_add_row('Add Item', f, :items, class: '') %>
-			</div>
-		</div>
-		<div class="form-footer pt-5 border-top">
-			<%= f.submit class: 'btn btn-primary btn-default' %>  
-		</div>
+	</div>
+	<div class="form-footer pt-5 border-top">
+		<%= f.submit class: 'btn btn-primary btn-default' %>  
 	</div>
 </div>
 <% end %>

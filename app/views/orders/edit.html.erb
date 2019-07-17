@@ -1,6 +1,16 @@
-<h1>Editing Order</h1>
-
-<%= render 'form', order: @order %>
-
-<%= link_to 'Show', @order %> |
-<%= link_to 'Back', orders_path %>
+<% if @order.errors.any? %>
+	<div id="error_explanation" class="alert alert-danger">
+		<h3><%= pluralize(@order.errors.count, "error") %> prohibited this order from being saved:</h3>
+		<ul>
+			<% @order.errors.full_messages.each do |message| %>
+	 			<li><%= message %></li>
+			<% end %>
+		</ul>
+	</div>
+<% end %>
+<div class="card card-default">
+	<div class="card-header card-header-border-bottom">
+		<h2>Edit Order</h2>
+	</div>
+	<%= render 'form', order: @order %>
+</div>

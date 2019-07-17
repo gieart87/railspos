@@ -3,6 +3,7 @@ class OrdersController < ApplicationController
 
 	before_action :set_order, only: [:show, :edit, :update, :destroy]
 	before_action :lock_order, only: [:edit, :update, :destroy]
+	before_action :check_order_items, only: [:create, :update]
 
 	# GET /orders
 	# GET /orders.json
@@ -76,14 +77,54 @@ class OrdersController < ApplicationController
 	end
 
 	private
-		# Use callbacks to share common setup or constraints between actions.
+
 		def set_order
 			@order = Order.find(params[:id])
 		end
 
-		# Never trust parameters from the scary internet, only allow the white list through.
 		def order_params
-			params.require(:order).permit(:order_code, :order_date, :status, :total, :discount, items_attributes: [:id,:product_id, :price,:qty,:total,:_destroy])
+			order_params = params.require(:order).permit(:order_code, :order_date, :status, :total, :discount, items_attributes: [:id,:product_id, :price,:qty,:total,:_destroy])
+			
+			if !order_params[:items_attributes].nil?
+				order_params[:items_attributes].each do | key, item |
+					if item[:qty].to_i < 1
+						order_params[:items_attributes].delete(key)
+					end
+				end
+			end
+
+			return order_params
+		end
+
+		def check_order_items
+			item_numbers = 0
+
+			errors = []
+
+			if !order_params[:items_attributes].nil?
+				order_params[:items_attributes].each do | key, item |
+					 if !item[:product_id].empty?
+					 	item_numbers += 1
+					 	
+					 	product = Product.find(item[:product_id])
+
+					 	if product.stock < item[:qty].to_i
+							errors.push("#{product.name} is out of stock")
+						end
+					 end
+				end
+			end
+
+			if item_numbers < 1
+				errors.push('At least one item chosen to make an order')
+			end
+
+			if errors.any?
+				respond_to do |format|
+					flash[:error] = errors.join(', ')
+					format.html { render :new }
+				end
+			end
 		end
 
 		def lock_order

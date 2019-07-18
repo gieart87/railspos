@@ -31,6 +31,8 @@ class Ability
 		# See the wiki for details:
 		# https://github.com/CanCanCommunity/cancancan/wiki/Defining-Abilities
 		if user.present?
+			can :read, Product
+
 			can :read, Order
 			can :manage, Order, user_id: user.id
 

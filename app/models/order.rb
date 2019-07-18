@@ -9,7 +9,7 @@ class Order < ApplicationRecord
 	accepts_nested_attributes_for :items, allow_destroy: true
 
 	def sub_totals  
-	   self.items.map { |i| i.subtotal }  
+	   self.items.map { |i| i.sub_total }  
 	end  
 	
 	def set_total  

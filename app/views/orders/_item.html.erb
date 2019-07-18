@@ -1,8 +1,8 @@
 <tr>
-	<td><%= f.collection_select :product_id, Product.all, :id, :name, {include_blank: 'Choose product..'}, {class: 'form-control'}%></td>
-	<td></td>
-	<td><%= f.number_field :qty, class: 'form-control', required: true%></td>
-	<td></td>
+	<td><%= f.collection_select :product_id, Product.all, :id, :name, {include_blank: 'Choose product..'}, {class: 'form-control select-item'}%></td>
+	<td><%= f.input_field :price, class: 'form-control', readonly: true %></td>
+	<td><%= f.number_field :qty, class: 'form-control qty-item', required: true, min: 1%></td>
+	<td><%= f.input_field :sub_total, class: 'form-control', readonly: true %></td>
 	<td>
 		<%= f.input_field :_destroy, as: :hidden %>
     	<%= link_to 'Delete', '#', class: 'remove_record' %>

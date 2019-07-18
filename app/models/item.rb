@@ -16,7 +16,7 @@ class Item < ApplicationRecord
 		self.price = self.product.price
 	end
  	
-	def subtotal
+	def sub_total
    		if self.qty.blank?
     		0
 		else

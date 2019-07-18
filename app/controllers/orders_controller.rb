@@ -1,7 +1,7 @@
 class OrdersController < ApplicationController
 	load_and_authorize_resource
 
-	before_action :set_order, only: [:show, :edit, :update, :destroy]
+	before_action :set_order, only: [:show, :edit, :payment, :update, :destroy]
 	before_action :lock_order, only: [:edit, :update, :destroy]
 	before_action :check_order_items, only: [:create, :update]
 
@@ -24,6 +24,11 @@ class OrdersController < ApplicationController
 
 	# GET /orders/1/edit
 	def edit
+	end
+
+	# GET /orders/1/payment
+	def payment
+		raise @order.inspect
 	end
 
 	# POST /orders

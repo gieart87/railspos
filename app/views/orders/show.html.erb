@@ -68,7 +68,7 @@
 					<span class="d-inline-block float-right"><%= currency_format @order.grand_total %></span>
 				</li>
 			</ul>
-			<a href="#" class="btn btn-block mt-2 btn-lg btn-primary btn-pill"> Procced to Payment</a>
+			<a href="<%= payment_order_path(@order) %>" class="btn btn-block mt-2 btn-lg btn-primary btn-pill"> Proceed to Payment</a>
 		</div>
 	</div>
 	<div class="row">

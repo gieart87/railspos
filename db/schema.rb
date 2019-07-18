@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_06_29_023222) do
+ActiveRecord::Schema.define(version: 2019_07_18_144919) do
 
   create_table "items", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.integer "qty"
@@ -35,6 +35,16 @@ ActiveRecord::Schema.define(version: 2019_06_29_023222) do
     t.bigint "user_id"
     t.index ["order_code"], name: "index_orders_on_order_code", unique: true
     t.index ["user_id"], name: "index_orders_on_user_id"
+  end
+
+  create_table "payments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.datetime "payment_date"
+    t.decimal "amount", precision: 10
+    t.decimal "change_amount", precision: 10
+    t.bigint "order_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["order_id"], name: "index_payments_on_order_id"
   end
 
   create_table "products", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -77,5 +87,6 @@ ActiveRecord::Schema.define(version: 2019_06_29_023222) do
 
   add_foreign_key "items", "orders"
   add_foreign_key "items", "products"
+  add_foreign_key "payments", "orders"
   add_foreign_key "products", "users"
 end

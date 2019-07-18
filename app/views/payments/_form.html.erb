@@ -1,0 +1,16 @@
+
+<%= simple_form_for(@payment) do |f| %>
+  <%= f.error_notification %>
+  <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+
+  <div class="form-inputs">
+    <%= f.input :payment_date %>
+    <%= f.input :amount %>
+    <%= f.input :change_amount %>
+    <%= f.association :order %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>

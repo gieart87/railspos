@@ -31,3 +31,10 @@
 
 en:
   hello: "Hello world"
+  activerecord:
+    errors:
+      models:
+        payment:
+          attributes:
+            amount:
+              invalid_amount: "should be greater or equal than the order amount"

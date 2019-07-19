@@ -28,7 +28,7 @@ class OrdersController < ApplicationController
 
 	# GET /orders/1/payment
 	def payment
-		raise @order.inspect
+		@payment = Payment.new
 	end
 
 	# POST /orders
@@ -60,6 +60,21 @@ class OrdersController < ApplicationController
 			else
 				format.html { render :edit }
 				format.json { render json: @order.errors, status: :unprocessable_entity }
+			end
+		end
+	end
+
+	def save_payment
+		@payment = Payment.new(payment_params)
+		@payment.order_id = @order.id
+
+		respond_to do |format|
+			if @payment.save
+				format.html { redirect_to @order, notice: 'Payment was successfully created.' }
+				format.json { render :show, status: :created, location: @payment }
+			else
+				format.html { render :payment }
+				format.json { render json: @payment.errors, status: :unprocessable_entity }
 			end
 		end
 	end
@@ -99,6 +114,10 @@ class OrdersController < ApplicationController
 			end
 
 			return order_params
+		end
+
+		def payment_params
+			params.require(:payment).permit(:amount, :change_amount)
 		end
 
 		def check_order_items

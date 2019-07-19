@@ -1,0 +1,81 @@
+<% if @payment.errors.any? %>
+	<div id="error_explanation" class="alert alert-danger">
+		<h3><%= pluralize(@payment.errors.count, "error") %> prohibited this order from being saved:</h3>
+		<ul>
+			<% @payment.errors.full_messages.each do |message| %>
+	 			<li><%= message %></li>
+			<% end %>
+		</ul>
+	</div>
+<% end %>
+<div class="card card-default">
+	<div class="card-header card-header-border-bottom">
+		<h2>Payment</h2>
+	</div>
+	<%= simple_form_for(@payment, :url => save_payment_order_path) do |f| %>
+	<div class="card-body">
+		<div class="row">
+			<div class="col-md-12">
+				<table class="table table-bordered">
+					<thead>
+						<th>Product</th>
+						<th width="15%">Price</th>
+						<th width="10%">QTY</th>
+						<th width="15%">Sub Total</th>
+					</thead>
+					<tbody class="fields">
+						<% @order.items.each do | item | %>
+							<tr>
+								<td><%= item.product.name %></td>
+								<td><%= item.price %></td>
+								<td><%= item.qty %></td>
+								<td><%= item.total %></td>
+							</tr>
+						<% end %>
+					</tbody>
+				</table>
+			</div>
+		</div>
+		<div class="row justify-content-end">
+			<div class="col-lg-5 col-xl-4 col-xl-3 ml-sm-auto">
+				<ul class="list-unstyled mt-4">
+					<li class="mid pb-3 text-dark"> Subtotal
+						<span class="d-inline-block float-right text-default"><%= currency_format @order.total %></span>
+					</li>
+					<li class="mid pb-3 text-dark"> Discount
+						<span class="d-inline-block float-right text-default"><%= currency_format @order.discount %></span>
+					</li>
+					<li class="mid pb-3 text-dark">Tax(10%)
+						<span class="d-inline-block float-right text-default"><%= currency_format @order.total_tax %></span>
+					</li>
+					<li class="pb-3 text-dark">Total
+						<span class="d-inline-block float-right"><%= currency_format @order.grand_total %></span>
+					</li>
+				</ul>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-8">&nbsp;</div>
+			<div class="col-md-4">
+				<div class="form-group">
+					<%= f.label :amount %>
+					<%= f.number_field :amount, min: 0, class: 'form-control input-lg'%>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-8">&nbsp;</div>
+			<div class="col-md-4">
+				<div class="form-group">
+					<%= f.label :change_amount %>
+					<%= f.number_field :change_amount, min: 0, class: 'form-control input-lg'%>
+				</div>
+			</div>
+		</div>
+		<div class="form-footer pt-5 border-top text-right">
+			<a href="<%= edit_order_path(@order) %>" class="btn btn-default">Edit Order</a>
+			<%= f.submit class: 'btn btn-primary btn-default', value: 'Save Payment' %>
+		</div>
+	</div>
+	<% end %>
+</div>

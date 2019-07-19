@@ -1,19 +1,13 @@
 <div class="invoice-wrapper rounded border bg-white py-5 px-3 px-md-4 px-lg-5">
 	<div class="d-flex justify-content-between">
 		<h2 class="text-dark font-weight-medium">Invoice #<%= @order.order_code %></h2>
-		<div class="btn-group">
-			<button class="btn btn-sm btn-secondary">
-				<i class="mdi mdi-content-save"></i> Save</button>
-			<button class="btn btn-sm btn-secondary">
-				<i class="mdi mdi-printer"></i> Print</button>
-		</div>
 	</div>
 	<div class="row pt-5">
 		<div class="col-xl-3 col-lg-4">
 			<p class="text-dark mb-2">From</p>
 			<address>
 				Company Name
-				<br> 47 Holmes Green, Sophiebury, WP9M 3ZZ
+				<br> 47 Holmes Green, Sophiebury
 				<br> Email: example@gmail.com
 			</address>
 		</div>
@@ -68,7 +62,11 @@
 					<span class="d-inline-block float-right"><%= currency_format @order.grand_total %></span>
 				</li>
 			</ul>
-			<a href="<%= payment_order_path(@order) %>" class="btn btn-block mt-2 btn-lg btn-primary btn-pill"> Proceed to Payment</a>
+			<% if @order.status == 1 %>
+				<a href="<%= payment_order_path(@order) %>" class="btn btn-block mt-2 btn-lg btn-primary btn-pill"> Proceed to Payment</a>
+			<% else %>
+				<a href="#" class="btn btn-block mt-2 btn-lg btn-default btn-pill">Paid</a>
+			<% end %>
 		</div>
 	</div>
 	<div class="row">

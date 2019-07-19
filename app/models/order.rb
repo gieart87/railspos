@@ -4,6 +4,8 @@ class Order < ApplicationRecord
 	before_save :set_total
 
 	has_many :items
+	has_many :payments
+
 	belongs_to :user
 
 	accepts_nested_attributes_for :items, allow_destroy: true
@@ -41,6 +43,17 @@ class Order < ApplicationRecord
 
 	def grand_total
 		total_nett + total_tax
+	end
+
+	def status_name
+		case self.status
+		when 1
+			"Pending"
+		when 2
+			"Success"
+		else 
+			"Archived"
+		end
 	end
 
 	private

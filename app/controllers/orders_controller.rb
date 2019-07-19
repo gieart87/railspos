@@ -4,6 +4,7 @@ class OrdersController < ApplicationController
 	before_action :set_order, only: [:show, :edit, :payment, :update, :destroy]
 	before_action :lock_order, only: [:edit, :update, :destroy]
 	before_action :check_order_items, only: [:create, :update]
+	before_action :check_payment, only: [:payment]
 
 	# GET /orders
 	# GET /orders.json
@@ -54,7 +55,7 @@ class OrdersController < ApplicationController
 	# PATCH/PUT /orders/1.json
 	def update
 		respond_to do |format|
-			if @order.update(order_params)
+			if @order.update(order_params.except(:order_date))
 				format.html { redirect_to @order, notice: 'Order was successfully updated.' }
 				format.json { render :show, status: :ok, location: @order }
 			else
@@ -67,9 +68,13 @@ class OrdersController < ApplicationController
 	def save_payment
 		@payment = Payment.new(payment_params)
 		@payment.order_id = @order.id
+		@payment.payment_date = Time.now
 
 		respond_to do |format|
 			if @payment.save
+				@order.status = 2
+				@order.save
+
 				format.html { redirect_to @order, notice: 'Payment was successfully created.' }
 				format.json { render :show, status: :created, location: @payment }
 			else
@@ -118,6 +123,15 @@ class OrdersController < ApplicationController
 
 		def payment_params
 			params.require(:payment).permit(:amount, :change_amount)
+		end
+
+		def check_payment
+			if @order.payments.sum(:amount) >= @order.grand_total
+				respond_to do |format|
+					flash[:error] = 'Order has been paid before'
+					format.html { render :show }
+				end
+			end
 		end
 
 		def check_order_items

@@ -8,9 +8,9 @@
 				<tr>
 					<th>Order code</th>
 					<th>Order date</th>
-					<th>Status</th>
 					<th>Total</th>
 					<th>Discount</th>
+					<th>Status</th>
 					<th>User</th>
 					<th colspan="3" width="15%"></th>
 				</tr>
@@ -21,9 +21,9 @@
 					<tr>
 						<td><%= order.order_code %></td>
 						<td><%= time_format order.order_date %></td>
-						<td><%= order.status %></td>
 						<td><%= order.total %></td>
 						<td><%= order.discount %></td>
+						<td><%= order.status_name %></td>
 						<td><%= order.user.name %></td>
 						<td>
 							<% if can? :read, order %>

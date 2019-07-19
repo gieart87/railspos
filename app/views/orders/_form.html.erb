@@ -12,7 +12,8 @@
 		<div class="col-md-4">
 			<div class="form-group">
 				<%= f.label :order_date %>
-				<%= f.text_field :order_date, value: Time.now.strftime('%Y-%m-%d'),class: 'form-control input-lg', readonly: true %>
+				<% order_date = @order.order_date ? @order.order_date : Time.now %>
+				<%= f.text_field :order_date, value: time_format(order_date), class: 'form-control input-lg', readonly: true %>
 			</div>
 		</div>
 	</div>

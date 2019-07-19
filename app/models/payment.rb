@@ -14,6 +14,18 @@ class Payment < ApplicationRecord
 		end
 	end
 
+	def save_payment
+		save_status = false
+		ActiveRecord::Base.transaction do
+			if self.save
+				self.order.update_order_and_stock
+			end
+			save_status = true
+		end
+
+		return save_status
+	end
+
 	private
 		def valid_payment_amount
 			if self.amount.to_f < self.order.grand_total

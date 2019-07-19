@@ -21,8 +21,8 @@
 					<tr>
 						<td><%= order.order_code %></td>
 						<td><%= time_format order.order_date %></td>
-						<td><%= order.total %></td>
-						<td><%= order.discount %></td>
+						<td><%= currency_format order.total %></td>
+						<td><%= currency_format order.discount %></td>
 						<td><%= order.status_name %></td>
 						<td><%= order.user.name %></td>
 						<td>

@@ -71,10 +71,7 @@ class OrdersController < ApplicationController
 		@payment.payment_date = Time.now
 
 		respond_to do |format|
-			if @payment.save
-				@order.status = 2
-				@order.save
-
+			if @payment.save_payment
 				format.html { redirect_to @order, notice: 'Payment was successfully created.' }
 				format.json { render :show, status: :created, location: @payment }
 			else
@@ -91,6 +88,10 @@ class OrdersController < ApplicationController
 			if @order.can_destory then
 				if !@order.items.empty?
 					@order.items.destroy_all
+				end
+
+				if !@order.payments.empty?
+					@order.payments.destroy_all
 				end
 
 				@order.destroy

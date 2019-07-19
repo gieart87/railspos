@@ -45,6 +45,16 @@ class Order < ApplicationRecord
 		total_nett + total_tax
 	end
 
+	def update_order_and_stock
+		self.status = 2
+		if self.save
+			self.items.each do | item |
+				item.product.stock = item.product.stock - item.qty
+				item.product.save
+			end
+		end
+	end
+
 	def status_name
 		case self.status
 		when 1

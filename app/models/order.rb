@@ -30,7 +30,7 @@ class Order < ApplicationRecord
 	end
 
 	def can_destory
-		return items.empty?
+		return self.status == 1
 	end
 
 	def total_nett

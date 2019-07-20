@@ -31,20 +31,24 @@
 							<% end %>
 						</td>
 						<td>
-							<% if can? :update, order %>
+							<% if order.status == 1 and can? :update, order %>
 								<%= link_to 'Edit', edit_order_path(order) %>
 							<% end %>
 						</td>
 						<td>
-							<% if can? :destroy, order %>
+							<% if order.status == 1 and can? :destroy, order %>
 								<%= link_to 'Destroy', order, method: :delete, data: { confirm: 'Are you sure?' } %>
 							<% end %>
 						</td>
 					</tr>
 				<% end %>
 			</tbody>
-		</table
-		<br>
-		<%= link_to 'New Order', new_order_path %>
+		</table>
+		<div class="digg_pagination">
+			<%= will_paginate @orders, renderer: BootstrapPagination::Rails%>
+		</div>
+		<div class="form-footer pt-5 border-top text-right" style="margin-top: 10px">
+			<%= link_to 'New Order', new_order_path, class: 'btn btn-primary' %>
+		</div>
 	</div>
 </div>

@@ -83,6 +83,7 @@
 				<div class="form-group">
 					<%= f.label :change_amount %>
 					<%= f.number_field :change_amount, min: 0, class: 'form-control input-lg'%>
+					<%= f.input_field :order_id, value: @order.id, as: :hidden %>
 				</div>
 			</div>
 		</div>

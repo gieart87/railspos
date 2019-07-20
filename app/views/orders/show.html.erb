@@ -70,6 +70,9 @@
 		</div>
 	</div>
 	<div class="row">
-		<%= link_to 'Edit', edit_order_path(@order) %> | <%= link_to 'Back', orders_path %>
+		<% if (@order.status == 1) %>
+			<%= link_to 'Edit', edit_order_path(@order) %>&nbsp;&nbsp;
+		<% end %>
+		<%= link_to 'Back', orders_path %>
 	</div>
 </div>

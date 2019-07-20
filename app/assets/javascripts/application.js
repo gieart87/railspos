@@ -63,4 +63,20 @@ $(document).on('turbolinks:load', function() {
   		calculatePerItem(itemKey, productId, qty);
   	});
   
+  	$('form').on('keyup', '#payment_amount', function(event) {
+  		var orderID = $('#payment_order_id').val();
+  		var paymentAmount = $('#payment_amount').val();
+  		$.ajax({
+  			url: '/orders/' + orderID + '.json',
+  			method: 'get',
+  			success: function (order) {
+  				var changeAmount  = 0;
+  				if (order.grand_total < paymentAmount) {
+  					changeAmount = paymentAmount - order.grand_total
+  				}
+
+  				$('#payment_change_amount').val(changeAmount);
+  			}
+  		})
+  	})
 });

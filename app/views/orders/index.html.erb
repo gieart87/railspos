@@ -45,7 +45,7 @@
 			</tbody>
 		</table>
 		<div class="digg_pagination">
-			<%= will_paginate @orders, renderer: BootstrapPagination::Rails%>
+			<%= will_paginate @orders %>
 		</div>
 		<div class="form-footer pt-5 border-top text-right" style="margin-top: 10px">
 			<%= link_to 'New Order', new_order_path, class: 'btn btn-primary' %>

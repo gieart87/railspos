@@ -2,6 +2,7 @@ class ProductsController < ApplicationController
 	load_and_authorize_resource
 	before_action :set_product, only: [:show, :edit, :update, :destroy]
 	before_action :set_status
+	before_action :current_menu
 
 	# GET /products
 	# GET /products.json
@@ -18,6 +19,7 @@ class ProductsController < ApplicationController
 	# GET /products/new
 	def new
 		@product = Product.new
+		@current_sub_menu = 'new_product'
 	end
 
 	# GET /products/1/edit
@@ -86,5 +88,10 @@ class ProductsController < ApplicationController
 
 		def set_status
 			@status = [['Active', 1], ['Inactive', 2]]
+		end
+
+		def current_menu
+			@current_menu = 'products'
+			@current_sub_menu = ''
 		end
 end

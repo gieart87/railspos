@@ -5,6 +5,7 @@ class OrdersController < ApplicationController
 	before_action :lock_order, only: [:edit, :update, :destroy]
 	before_action :check_order_items, only: [:create, :update]
 	before_action :check_payment, only: [:payment]
+	before_action :current_menu
 
 	# GET /orders
 	# GET /orders.json
@@ -21,6 +22,7 @@ class OrdersController < ApplicationController
 	def new
 		@order = Order.new
 		1.times { @order.items.build }
+		@current_sub_menu = 'new_order'
 	end
 
 	# GET /orders/1/edit
@@ -107,6 +109,10 @@ class OrdersController < ApplicationController
 	end
 
 	private
+		def current_menu
+			@current_menu = 'orders'
+			@current_sub_menu = ''
+		end
 
 		def set_order
 			@order = Order.find(params[:id])

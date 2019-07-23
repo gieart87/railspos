@@ -7,7 +7,7 @@
 	<div id="sidebar" class="sidebar sidebar-with-footer">
 		<!-- Aplication Brand -->
 		<div class="app-brand">
-			<a href="/index.html">
+			<a href="/">
 				<svg
 					class="brand-icon"
 					xmlns="http://www.w3.org/2000/svg"
@@ -25,7 +25,7 @@
 						<path class="logo-fill-white" fill="#FFF" d="M11 4v25l8 4V0z" />
 					</g>
 				</svg>
-				<span class="brand-name">Sleek Dashboard</span>
+				<span class="brand-name">Rails-POS</span>
 			</a>
 		</div>
 		<!-- begin sidebar scrollbar -->
@@ -33,37 +33,37 @@
 
 			<!-- sidebar menu -->
 			<ul class="nav sidebar-inner" id="sidebar-menu">
-				<li  class="has-sub active expand" >
+				<li  class="has-sub <%= (@current_menu == 'orders') ? 'active expand' : ''%>" >
 					<a class="sidenav-item-link" href="javascript:void(0)" data-toggle="collapse" data-target="#dashboard"
 					   aria-expanded="false" aria-controls="dashboard">
 						<i class="mdi mdi-view-dashboard-outline"></i>
 						<span class="nav-text">Orders</span> <b class="caret"></b>
 					</a>
-					<ul  class="collapse show"  id="dashboard"
+					<ul  class="collapse <%= (@current_menu == 'orders') ? 'show' : ''%>"  id="dashboard"
 						 data-parent="#sidebar-menu">
 						<div class="sub-menu">
-							<li >
+							<li class="<%= (@current_menu == 'orders' and @current_sub_menu == 'new_order') ? 'active' : ''%>">
 								<%= link_to 'New Order', new_order_path %>
 							</li>
-							<li >
+							<li class="<%= (@current_menu == 'orders' and @current_sub_menu == '') ? 'active' : ''%>">
 								<%= link_to 'Orders', orders_path %>
 							</li>  
 						</div>
 					</ul>
 				</li>
-				<li  class="has-sub" >
+				<li  class="has-sub <%= (@current_menu == 'products') ? 'active expand' : ''%>">
 					<a class="sidenav-item-link" href="javascript:void(0)" data-toggle="collapse" data-target="#ui-elements"
 					   aria-expanded="false" aria-controls="ui-elements">
 						<i class="mdi mdi-folder-multiple-outline"></i>
 						<span class="nav-text">Products</span> <b class="caret"></b>
 					</a>
-					<ul  class="collapse"  id="ui-elements"
+					<ul  class="collapse <%= (@current_menu == 'products') ? 'show' : ''%>"  id="ui-elements"
 						 data-parent="#sidebar-menu">
 						<div class="sub-menu">
-							<li >
+							<li class="<%= (@current_menu == 'products' and @current_sub_menu == 'new_product') ? 'active' : ''%>">
 								<%= link_to 'New Product', new_product_path %>
 							</li>
-							<li >
+							<li class="<%= (@current_menu == 'products' and @current_sub_menu == '') ? 'active' : ''%>">
 								<%= link_to 'Products', products_path %>
 							</li>  
 						</div>

@@ -29,7 +29,7 @@ class Order < ApplicationRecord
     	false # If you return anything else, the callback will not stop the destroy from happening
 	end
 
-	def can_destory
+	def can_destroy
 		return self.status == 1
 	end
 

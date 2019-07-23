@@ -58,9 +58,16 @@ class ProductsController < ApplicationController
 	# DELETE /products/1
 	# DELETE /products/1.json
 	def destroy
-		@product.destroy
 		respond_to do |format|
-			format.html { redirect_to products_url, notice: 'Product was successfully destroyed.' }
+			if @product.can_destroy then
+				@product.destroy
+		
+				flash[:notice] = 'Product was successfully destroyed.'
+			else
+				flash[:error] = 'Product could not be destroyed.'
+			end
+
+			format.html { redirect_to products_url }
 			format.json { head :no_content }
 		end
 	end

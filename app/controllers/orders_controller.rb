@@ -85,7 +85,7 @@ class OrdersController < ApplicationController
 	# DELETE /orders/1.json
 	def destroy
 		respond_to do |format|
-			if @order.can_destory then
+			if @order.can_destroy then
 				if !@order.items.empty?
 					@order.items.destroy_all
 				end

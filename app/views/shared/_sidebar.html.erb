@@ -33,7 +33,7 @@
 
 			<!-- sidebar menu -->
 			<ul class="nav sidebar-inner" id="sidebar-menu">
-				<li  class="has-sub <%= (@current_menu == 'orders') ? 'active expand' : ''%>" >
+				<li class="has-sub <%= (@current_menu == 'orders') ? 'active expand' : ''%>" >
 					<a class="sidenav-item-link" href="javascript:void(0)" data-toggle="collapse" data-target="#dashboard"
 					   aria-expanded="false" aria-controls="dashboard">
 						<i class="mdi mdi-view-dashboard-outline"></i>
@@ -51,13 +51,13 @@
 						</div>
 					</ul>
 				</li>
-				<li  class="has-sub <%= (@current_menu == 'products') ? 'active expand' : ''%>">
-					<a class="sidenav-item-link" href="javascript:void(0)" data-toggle="collapse" data-target="#ui-elements"
+				<li class="has-sub <%= (@current_menu == 'products') ? 'active expand' : ''%>">
+					<a class="sidenav-item-link" href="javascript:void(0)" data-toggle="collapse" data-target="#menu-products"
 					   aria-expanded="false" aria-controls="ui-elements">
 						<i class="mdi mdi-folder-multiple-outline"></i>
 						<span class="nav-text">Products</span> <b class="caret"></b>
 					</a>
-					<ul  class="collapse <%= (@current_menu == 'products') ? 'show' : ''%>"  id="ui-elements"
+					<ul  class="collapse <%= (@current_menu == 'products') ? 'show' : ''%>"  id="menu-products"
 						 data-parent="#sidebar-menu">
 						<div class="sub-menu">
 							<li class="<%= (@current_menu == 'products' and @current_sub_menu == 'new_product') ? 'active' : ''%>">
@@ -66,6 +66,24 @@
 							<li class="<%= (@current_menu == 'products' and @current_sub_menu == '') ? 'active' : ''%>">
 								<%= link_to 'Products', products_path %>
 							</li>  
+						</div>
+					</ul>
+				</li>
+				<li class="has-sub <%= (@current_menu == 'reports') ? 'active expand' : ''%>">
+					<a class="sidenav-item-link" href="javascript:void(0)" data-toggle="collapse" data-target="#menu-reports"
+					   aria-expanded="false" aria-controls="ui-elements">
+						<i class="mdi mdi-image-filter-none"></i>
+						<span class="nav-text">Reports</span> <b class="caret"></b>
+					</a>
+					<ul  class="collapse <%= (@current_menu == 'reports') ? 'show' : ''%>"  id="menu-reports"
+						 data-parent="#sidebar-menu">
+						<div class="sub-menu">
+							<li class="<%= (@current_menu == 'reports' and @current_sub_menu == 'sales') ? 'active' : ''%>">
+								<%= link_to 'Sales', reports_sales_path %>
+							</li>
+							<li class="<%= (@current_menu == 'reports' and @current_sub_menu == 'revenue') ? 'active' : ''%>">
+								<%= link_to 'Revenue', reports_revenue_path %>
+							</li>
 						</div>
 					</ul>
 				</li>

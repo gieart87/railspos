@@ -1,0 +1,31 @@
+<div class="card card-default">
+	<div class="card-header card-header-border-bottom">
+		<h2>Sales Reports</h2>
+	</div>
+	<div class="card-body">
+		<table class="table table-bordered table-striped">
+			<thead>
+				<tr>
+					<th width="20%">Date</th>
+					<th width="15%">Sku</th>
+					<th>Name</th>
+					<th width="10%">Qty</th>
+				</tr>
+			</thead>
+
+			<tbody>
+				<% @items.each do |item| %>
+					<tr>
+						<td><%= time_format item.order_date %></td>
+						<td><%= item.sku %></td>
+						<td><%= item.name %></td>
+						<td><%= item.qty %></td>
+					</tr>
+				<% end %>
+			</tbody>
+		</table>
+		<div class="digg_pagination">
+			<%= will_paginate @items %>
+		</div>
+	</div>
+</div>

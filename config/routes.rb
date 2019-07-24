@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+	get 'reports/sales'
+	get 'reports/revenue'
 	resources :payments
 	devise_for :users, controllers: { registrations: "registrations" }
 	resources :orders do 

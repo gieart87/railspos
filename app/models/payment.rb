@@ -19,8 +19,8 @@ class Payment < ApplicationRecord
 		ActiveRecord::Base.transaction do
 			if self.save
 				self.order.update_order_and_stock
+				save_status = true
 			end
-			save_status = true
 		end
 
 		return save_status

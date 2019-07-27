@@ -9,7 +9,6 @@
 					<th>Order code</th>
 					<th>Order date</th>
 					<th>Total</th>
-					<th>Discount</th>
 					<th>Status</th>
 					<th>User</th>
 					<th colspan="3" width="15%"></th>
@@ -21,8 +20,7 @@
 					<tr>
 						<td><%= order.order_code %></td>
 						<td><%= time_format order.order_date %></td>
-						<td><%= currency_format order.total %></td>
-						<td><%= currency_format order.discount %></td>
+						<td><%= currency_format order.grand_total %></td>
 						<td><%= order.status_name %></td>
 						<td><%= order.user.name %></td>
 						<td>

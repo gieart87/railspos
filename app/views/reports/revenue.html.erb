@@ -1,2 +1,27 @@
-<h1>Reports#revenue</h1>
-<p>Find me in app/views/reports/revenue.html.erb</p>
+<div class="card card-default">
+	<div class="card-header card-header-border-bottom">
+		<h2>Revenue Reports</h2>
+	</div>
+	<div class="card-body">
+		<table class="table table-bordered table-striped">
+			<thead>
+				<tr>
+					<th width="20%">Date</th>
+					<th>Revenue</th>
+				</tr>
+			</thead>
+
+			<tbody>
+				<% @orders.each do |order| %>
+					<tr>
+						<td><%= order.order_date %></td>
+						<td><%= order.grand_total %></td>
+					</tr>
+				<% end %>
+			</tbody>
+		</table>
+		<div class="digg_pagination">
+			<%= will_paginate @orders %>
+		</div>
+	</div>
+</div>

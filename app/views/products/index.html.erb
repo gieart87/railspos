@@ -6,6 +6,7 @@
 		<table class="table table-bordered table-striped">
 			<thead>
 				<tr>
+					<th>Image</th>
 					<th>Sku</th>
 					<th width="30%">Name</th>
 					<th>Price</th>
@@ -18,6 +19,11 @@
 			<tbody>
 				<% @products.each do |product| %>
 					<tr>
+						<td>
+							<% if product.image.attached? %>
+								<%= image_tag product.image, style: 'width:80px;height:auto;' %>
+							<% end %>	
+						</td>
 						<td><%= product.sku %></td>
 						<td><%= product.name %></td>
 						<td><%= product.price %></td>

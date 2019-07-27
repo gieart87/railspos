@@ -8,6 +8,7 @@ class Product < ApplicationRecord
 	validates :stock, presence: true
 
 	has_many :items
+	has_one_attached :image
 
 	def can_destroy
 		self.items.empty?

@@ -15,7 +15,9 @@ class Order < ApplicationRecord
 	end  
 	
 	def set_total  
-	   self.total = sub_totals.sum  
+	   self.total = sub_totals.sum
+	   self.tax = total_tax
+	   self.grand_total = grand_total
 	end
 
 	def set_order_code

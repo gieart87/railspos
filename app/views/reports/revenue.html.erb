@@ -12,12 +12,19 @@
 			</thead>
 
 			<tbody>
+				<% total = 0 %>
 				<% @orders.each do |order| %>
 					<tr>
-						<td><%= order.order_date %></td>
-						<td><%= order.grand_total %></td>
+						<td><%= time_format(order.revenue_date, '%d %B %Y') %></td>
+						<td><%= currency_format order.revenue_amount %></td>
 					</tr>
+
+					<% total += order.revenue_amount %>
 				<% end %>
+				<tr>
+					<td>Total</td>
+					<td><%= currency_format total %></td>
+				</tr>
 			</tbody>
 		</table>
 		<div class="digg_pagination">

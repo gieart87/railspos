@@ -10,8 +10,9 @@ module ApplicationHelper
 		link_to(name, '#', class: "add_fields " + args[:class], data: {id: id, fields: fields.gsub("\n", "")})
   	end
 
-  	def time_format(date_string)
-  		date_string.nil? ? '' : date_string.to_time.strftime('%d %B %Y %H:%M:%S')
+  	def time_format(date_string, format = '%d %B %Y %H:%M:%S')
+
+  		date_string.nil? ? '' : date_string.to_time.strftime(format)
   	end
 
   	def currency_format(number)

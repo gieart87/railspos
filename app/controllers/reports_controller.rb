@@ -8,15 +8,12 @@ class ReportsController < ApplicationController
 
 	def revenue
 		@current_sub_menu = 'revenue'
-		@orders = Order.select('DATE(orders.order_date) AS test',' SUM(orders.grand_total) as grand_total')
+		@orders = Order.select('DATE(orders.order_date) AS revenue_date', ' SUM(orders.grand_total) as revenue_amount')
 		.where(status:2)
-		.group('order_date')
+		.group('revenue_date')
+		.order('revenue_date ASC')
 		.paginate(page: params[:page], per_page: 10)
-		
 
-		@orders.each do | order |
-			raise order.inspect
-		end
 	end
 
 	private

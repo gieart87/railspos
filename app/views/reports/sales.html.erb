@@ -16,7 +16,7 @@
 			<tbody>
 				<% @items.each do |item| %>
 					<tr>
-						<td><%= time_format item.order_date %></td>
+						<td><%= time_format(item.sales_date, '%d %B %Y')%></td>
 						<td><%= item.sku %></td>
 						<td><%= item.name %></td>
 						<td><%= item.qty %></td>

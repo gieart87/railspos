@@ -11,7 +11,7 @@ require 'capistrano/rails/console'
 require 'capistrano/upload-config'
 require 'sshkit/sudo'
 
-# install_plugin Capistrano::Nginx
+install_plugin Capistrano::Nginx
 install_plugin Capistrano::SCM::Git
 install_plugin Capistrano::Puma  # Default puma tasks
 install_plugin Capistrano::Puma::Nginx  # if you want to upload a nginx site template

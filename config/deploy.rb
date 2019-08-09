@@ -2,7 +2,7 @@ set :repo_url, 'git@github.com:gieart87/railspos.git'
 # ask :branch, `git rev-parse --abbrev-ref HEAD`.chomp
 
 set :user, 'deployer'
-set :application, 'rails-pos'
+set :application, 'railspos'
 set :rails_env, 'production'
 server '207.148.71.28', user: "#{fetch(:user)}", roles: %w{app db web}, primary: true
 set :deploy_to,       "/home/#{fetch(:user)}/apps/#{fetch(:application)}"

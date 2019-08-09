@@ -1,0 +1,4 @@
+development:
+  DASHBOARD_DATABASE_PASSWORD: password
+production:
+  DASHBOARD_DATABASE_PASSWORD: password

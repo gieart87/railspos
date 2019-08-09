@@ -28,3 +28,4 @@
 /config/database.yml
 /config/database.production.yml
 /config/master.production.key
+/config/environment_variables.yml

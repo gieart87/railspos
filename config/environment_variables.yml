@@ -1,4 +1,0 @@
-development:
-  DASHBOARD_DATABASE_PASSWORD: Dlingo789
-production:
-  DASHBOARD_DATABASE_PASSWORD: Dlingo789

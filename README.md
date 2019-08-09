@@ -11,3 +11,7 @@ Features:
 * Manage Order
 
 * Display Report
+
+## Demo
+Admin : admin@example.com password: admin123
+User : user@example.com password: user123

@@ -10,7 +10,7 @@ class OrdersController < ApplicationController
 	# GET /orders
 	# GET /orders.json
 	def index
-		@orders = Order.paginate(page: params[:page], per_page: 10).order(order_date: :desc)
+		@orders = Order.includes(:user).paginate(page: params[:page], per_page: 10).order(order_date: :desc)
 	end
 
 	# GET /orders/1
@@ -115,7 +115,7 @@ class OrdersController < ApplicationController
 		end
 
 		def set_order
-			@order = Order.find(params[:id])
+			@order = Order.includes(:items).find(params[:id])
 		end
 
 		def order_params

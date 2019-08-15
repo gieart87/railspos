@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'hello/index'
 	get 'reports/sales'
 	get 'reports/revenue'
 	resources :payments

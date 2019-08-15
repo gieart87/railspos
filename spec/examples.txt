@@ -1,0 +1,4 @@
+example_id                                         | status | run_time        |
+-------------------------------------------------- | ------ | --------------- |
+./spec/controllers/hello_controller_spec.rb[1:1:1] | failed | 0.00719 seconds |
+./spec/controllers/hello_controller_spec.rb[1:1:2] | failed | 0.02768 seconds |

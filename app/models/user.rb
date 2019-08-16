@@ -6,6 +6,9 @@ class User < ApplicationRecord
 
 	before_validation :set_default_role, on: [:create, :update]
 
+	validates :first_name, presence: true
+	validates :last_name, presence: true
+
 	belongs_to :role
 
 	def name
